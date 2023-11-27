@@ -1,1 +1,166 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://aframe.io/releases/1.4.0/aframe.min.js"></script>
+    <script type="module" src="https://threejs.org/build/three.module.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.1/dist/aframe-extras.min.js"></script>
+
+    <title>Museo Aire Libre</title>
+  </head>
+  <body>
+
+    <a-scene>
+      <a-assets>
+          <img id="texture" src="https://cdn.jsdelivr.net/gh/rojalonsocarri2017/Ejercicios_AFrame/ejercicioComponentesV2/textura-suelo.jpg">
+          <img id="cielo" src="https://cdn.jsdelivr.net/gh/rojalonsocarri2017/Ejercicios_AFrame/ejercicioComponentesV2/cielo3.jpg">
+          <img id="barro" src="https://cdn.jsdelivr.net/gh/rojalonsocarri2017/Ejercicios_AFrame/audioguia3D/barro.jpg">
+        
+          <a-asset-item id="model1" src="https://cdn.jsdelivr.net/gh/rojalonsocarri2017/Ejercicios_AFrame/audioguia3D/2021_lamborghini_countach_lpi_800-4.glb"></a-asset-item>  
+          <a-asset-item id="model2" src="https://cdn.jsdelivr.net/gh/rojalonsocarri2017/Ejercicios_AFrame/audioguia3D/BabyElephant_GLB.glb"></a-asset-item>
+          <a-asset-item id="model4" src="https://cdn.jsdelivr.net/gh/rojalonsocarri2017/Ejercicios_AFrame/audioguia3D/skull_downloadable.glb"></a-asset-item>  
+          <a-asset-item id="model5" src="https://cdn.jsdelivr.net/gh/rojalonsocarri2017/Ejercicios_AFrame/ejercicioComponentes/caution_wet_floor__cleaning_sign_v2.glb"></a-asset-item>
+          <a-asset-item id="model6" src="https://cdn.jsdelivr.net/gh/rojalonsocarri2017/Ejercicios_AFrame/audioguia3D/1924.1017_torso_of_apollo.glb"></a-asset-item>  
+          <a-asset-item id="model7" src="https://cdn.jsdelivr.net/gh/rojalonsocarri2017/Ejercicios_AFrame/audioguia3D/1929.998_portrait_head_of_emperor_vespasian.glb"></a-asset-item>
+          <a-asset-item id="model8" src="https://cdn.jsdelivr.net/gh/rojalonsocarri2017/Ejercicios_AFrame/audioguia3D/2022.2_why_born_enslaved.glb"></a-asset-item>
+          <a-asset-item id="model9" src="https://cdn.jsdelivr.net/gh/rojalonsocarri2017/Ejercicios_AFrame/audioguia3D/dragon_glass.glb"></a-asset-item>
+
+          <a-asset-item id="lake" src="https://cdn.jsdelivr.net/gh/rojalonsocarri2017/Ejercicios_AFrame/audioguia3D/sad_snail.glb"></a-asset-item>
+
+          <audio id="audio1" crossorigin="anonymous" src="https://cdn.jsdelivr.net/gh/rojalonsocarri2017/Ejercicios_AFrame/audioguia3D/j-balvin-safari.mp3"></audio>
+          <audio id="audio2" crossorigin="anonymous" src="https://cdn.jsdelivr.net/gh/rojalonsocarri2017/Ejercicios_AFrame/audioguia3D/ringtones-halloween.mp3"></audio>
+        <video id="miVideo" src="https://cdn.jsdelivr.net/gh/rojalonsocarri2017/Ejercicios_AFrame/audioguia3D/video2.mp4" crossorigin="anonymous"></video>      
+      </a-assets>
+      <a-plane
+        src="#texture"
+        rotation="-90 0 0"
+        width="100"
+        height="100"
+        repeat="6 6 3"
+        shadow="receive: true">
+      </a-plane>
+      <a-plane
+    src="#barro"
+    rotation="-90 0 0"
+    width="20"
+    height="20"
+    position="-39 0.1 -39"
+    shadow="receive: true">
+  </a-plane>
+      
+
+      <a-sky radius="70" src="#cielo"></a-sky>
+      <a-cylinder position="0 0 0" color="green" ></a-cylinder>
+      <a-entity>
+        <a-camera id="camera1" position="0 1.6 48">
+          <a-cursor cursor="rayOrigin: mouse"></a-cursor>
+        </a-camera>
+      </a-entity>
+      
+      <a-entity id="coche" gltf-model="#model1" position="-35 1.3 40"  
+                distance="camera: #camera1; distanceLimit: 8"
+                interruptor_texto 
+      ></a-entity>
+      <a-entity id="luzCoche" light="type: point; intensity:4; distance:14; decay:0.6; castShadow: true;"
+                position="-40 10.8 40.9" visible="true" ></a-entity>
+      <a-entity  position="-35 3 40">
+        <a-box
+          id="textoActivarSonido"
+          width="2"
+          height="0.5"
+          depth="0.1"
+          color="green"
+          rotation="0 90 0"
+          visible="false"
+          sound="src: #audio1; autoplay: false; loop: false; "
+          clickable
+        >
+
+          <a-text
+            id="textoActivar"
+            value="Activar Sonido"
+            align="center"
+            position="0 0 0.1"
+            color="white"
+            scale="1 1 1"
+          ></a-text>
+        </a-box>
+      </a-entity>
+      
+      <a-entity
+        id="videoElefante"
+        geometry="primitive: plane; width: 8; height: 5"
+        material="src: #miVideo"
+        position="-34 5 -1"
+        rotation="0 90 0"
+        visible="false"
+        
+      ></a-entity>
+      
+      <a-entity id="elefante"  gltf-model="#model2" position="-38 0 4" scale="2 2 2" distance="camera: #camera1; distanceLimit: 15" interruptor_video></a-entity>
+      
+      
+      <a-entity id="calavera" gltf-model="#model4" position="32 2 25" rotation="0 250 0" scale="2 2 2" sound="src: #audio2; autoplay: false; loop: false; " distance="camera: #camera1; distanceLimit: 10" sonido_interruptor luz_interruptor></a-entity>
+      <a-entity light="type: ambient; intensity:1"></a-entity>
+      <a-entity id="luzCalavera" light="type: point; intensity:0; distance:7; decay:0.3; castShadow: true;"
+                position="29.8 5.6 24" rotation="-40 0 0" ></a-entity>
+      
+      
+      <a-entity id="caution" gltf-model="#model5" rotation="0 30 0" position="-32 0 -29" scale="0.04 0.02 0.01"></a-entity>
+            <a-entity id="lake1" gltf-model="#lake"  position="-36 1.3 -36" scale="0.2 0.1 0.11"></a-entity>
+
+      
+      <a-entity id="statue1" gltf-model="#model6" position="35 1 0" scale="3 3 3" rotation="0 -20 0" ></a-entity>
+      <a-box position="35 0.5 0" scale="2 2 1" color="brown">
+          <a-text
+            value="ARTE 1"
+            align="center"
+            position="0 0.2 0.5"
+            color="white"
+            scale="1 1 1"
+          ></a-text>
+      </a-box>
+
+      
+      
+      <a-entity id="statue2" gltf-model="#model7" position="0 0.3 -0.3" scale="5 5 3"></a-entity>
+      <a-entity id="luzCabeza" light="type: point; intensity:4; distance:7; decay:0.4; castShadow: true;"
+                position="0.2 6.1 1.6" visible="false" tiempo></a-entity>
+      
+      <a-entity id="statue3" gltf-model="#model8" position="-6 0 25" scale="4 4 4" ></a-entity>
+      <a-box id="cajaOpacidad"
+          position="-6 0 25" scale="1 1 1"
+          width="3"
+          height="5.5"
+          depth="2"
+          color="blue"
+          visible="true"
+          opacity="1"
+          distance="camera: #camera1; distanceLimit: 15"
+          opacidad_interruptor
+          ></a-box>
+      
+      <a-entity id="statue4" gltf-model="#model9" animation="property: rotation; dur: 10000;
+                       to: 0 360 0; loop: true" animation-mixer position="15 1.5 20" scale="0.1 0.1 0.1"></a-entity>
+    
+      <a-box position="11.2 0 19.6" rotation="90 0 0" scale="1 1 1" color="#808080" width="5" height="3" depth="0.1">
+    <a-text value="ARTE 2" rotation="180 0 0" align="center" side="double" position="0 0.05 -0.3" color="white" scale="1 1 1"></a-text>
+    <a-text value="Pieza del museo de prueba 
+                   la cual tiene un efecto propio,
+                   cuya animacion en 3D podemos 
+                   ver en vivo"
+            align="left"
+            side="double"
+            position="-1.7 0.8 -0.3"
+            rotation="180 0 0"
+            color="white"
+            scale="1 1 1"></a-text>
+    </a-box>
+
+
+      
+    </a-scene>
+  </body>
+</html>
 
