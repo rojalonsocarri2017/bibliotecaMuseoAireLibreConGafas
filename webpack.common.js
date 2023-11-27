@@ -3,7 +3,7 @@ const path = require("path");
 module.exports = {
   entry: path.join(__dirname, "./index.js"),
   output: {
-    filename: "aframe-babia-components.js",
+    filename: "aframe-museoairelibre-components.js",
     path: path.resolve(__dirname, "dist")
   },
   module: {

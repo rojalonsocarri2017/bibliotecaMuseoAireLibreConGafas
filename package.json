@@ -1,9 +1,9 @@
 {
-  "name": "bibliotecamuseoairelibre",
+  "name": "aframe-museoairelibre-components",
   "version": "1.0.0",
   "description": "Ejercicio de un museo al aire libre con una biblioteca",
   "main": "index.js",
-  "unpkg": "dist/aframe-babia-components.min.js",
+  "unpkg": "dist/aframe-museoairelibre-components.min.js",
   "scripts": {
     "build": "npm run build:dev",
     "build:dev": "webpack --config webpack.dev.js",
