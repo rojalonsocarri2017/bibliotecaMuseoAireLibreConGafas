@@ -63,8 +63,12 @@ function calculateDistance(pos1, pos2) {
       }
 
       // Vuelve a programar la ejecución de la función tick para el próximo fotograma
-      this.el.sceneEl.renderer.xr.getSession().requestAnimationFrame(this.tick.bind(this));
+      // this.el.sceneEl.renderer.xr.getSession().requestAnimationFrame(this.tick.bind(this));
     //   this.el.sceneEl.renderer.xr.getSession()?.requestAnimationFrame(this.tick.bind(this));
+    const session = this.el.sceneEl.renderer.xr.getSession();
+    if (session) {
+      session.requestAnimationFrame(this.tick.bind(this));
+    }
 
 
     }

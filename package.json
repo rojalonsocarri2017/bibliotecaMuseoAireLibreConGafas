@@ -7,7 +7,6 @@
   "scripts": {
     "build": "npm run build:dev",
     "build:dev": "webpack --config webpack.dev.js",
-    "build:prod": "webpack --config webpack.prod.js",
     "dev": "webpack-dev-server --open --config webpack.devnossl.js",
     "dist": "npm run build",
     "serve": "npm run dev",
